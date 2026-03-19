@@ -13,18 +13,20 @@ meta:
   # - I3Docs / I3UI / I3Fix / I3Test / I3Biome: tags for documentation, UI polish, minor fixes, tests and Biome/tooling work not tied to a single deliverable
 roadmap:
   current:
+  recent_done:
     - id: "init"
       issue: ""
       title: "init"
-      status: in-progress
+      status: completed
       priority:
       labels:
         - type:
         - area:
       deliverables:
-        - "[in-progress] I1D1: init"
+        - "[completed] I1D1: init"
       progress_log:
-        - ""
+        - "Project initialized with modular resume composer foundation"
+        - "MIT license added and repository pushed to GitHub"
       est:
         dev_h: 1
         test_h: 0
