@@ -1,0 +1,24 @@
+import {
+LoadedResumeModulesSchema,
+PresetFileSchema,
+} from "~/lib/resume/schema";
+import { composeResumeDocument } from "~/lib/resume/compose";
+
+const modules = LoadedResumeModulesSchema.parse({
+profile,
+summaries,
+strengths,
+impacts,
+experience,
+overlays,
+education,
+certifications,
+stack,
+});
+
+const preset = PresetFileSchema.parse(presetYaml);
+
+const document = composeResumeDocument({
+modules,
+preset,
+});

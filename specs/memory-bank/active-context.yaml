@@ -1,0 +1,34 @@
+meta:
+  release: "0.0.1"
+  repo: github.com/BallLightningAB/modular-resume-composer
+  project:
+  pdd_version:
+  current_changes: see specs/current-changes/
+  future_changes: see specs/future-changes/
+  references:
+    pdd:
+    changelog: specs/CHANGELOG.yaml
+  # Legend:
+  # - I{issue}D{n}: deliverable n for GitHub issue #{issue} (e.g. I3D3 = Issue #3 Deliverable 3)
+  # - I3Docs / I3UI / I3Fix / I3Test / I3Biome: tags for documentation, UI polish, minor fixes, tests and Biome/tooling work not tied to a single deliverable
+roadmap:
+  current:
+    - id: "init"
+      issue: ""
+      title: "init"
+      status: in-progress
+      priority:
+      labels:
+        - type:
+        - area:
+      deliverables:
+        - "[in-progress] I1D1: init"
+      progress_log:
+        - ""
+      est:
+        dev_h: 1
+        test_h: 0
+      remaining_deliverables: []
+      sub_issues: []
+  recent_done:
+  next_steps:

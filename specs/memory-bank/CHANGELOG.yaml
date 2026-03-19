@@ -1,0 +1,9 @@
+entries:
+  - date: "2026-03-19"
+    version: "0.0.1"
+    issue: ""
+    commit: TBD
+    status: in-progress
+    title: "init"
+
+    Refs: v0.0.1 #1

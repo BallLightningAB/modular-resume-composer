@@ -1,0 +1,471 @@
+modular_resume_composer_pdd:
+  meta:
+    name: "Modular Resume Composer PDD"
+    code_name: "modular-resume-composer-pdd"
+    version: "0.0.1"
+    repo: "https://github.com/BallLightningAB/modular-resume-composer"
+    domain: ""
+    github_project: ""
+    owner:
+      individual: "Nicolas Brulay"
+      company: "Ball Lightning AB"
+
+  purpose: >
+    Local modular resume composer for Nicolas Brulay. Builds English and Swedish resume variants
+    from reusable YAML content blocks, with optional overlays such as AI/agentic emphasis.
+
+  primary_goals:
+    - Single source of truth for resume content
+    - Fast generation of role-targeted resumes
+    - Easy switching between English and Swedish
+    - Clean 2-page PDF/print export
+    - Minimal friction for editing and iteration
+
+  non_goals_for_v1:
+    - No multi-user support
+    - No database
+    - No authentication
+    - No WYSIWYG editor
+    - No heavy CMS behavior
+
+  stack:
+    app:
+      - TanStack Start
+      - React
+      - TypeScript
+      - shadcn/ui
+      - Tailwind CSS
+      - Zod
+    optional:
+      - yaml
+      - react-hook-form
+      - sonner
+      - lucide-react
+    export_strategy:
+      - Browser print to PDF first
+      - Print-specific CSS
+      - Optional later: server-side PDF rendering
+
+  design_principle:
+    summary: >
+      Treat resume content as structured data and the app as an assembly/preview/export layer.
+
+  content_model:
+    entities:
+      profile:
+        description: Core identity, contact info, links, languages
+      summaries:
+        description: Reusable summary blocks by role track and language
+      strengths:
+        description: Reusable core strengths lists by track and language
+      impacts:
+        description: Reusable selected-impact bullets by track and language
+      experience_entries:
+        description: Master bank of role entries with tagged bullets
+      overlays:
+        description: Optional insertable sections such as AI / Agentic Delivery
+      education:
+        description: Shared education blocks
+      certifications:
+        description: Shared certifications
+      stack_blocks:
+        description: Reusable technical stack sections
+      output_presets:
+        description: Saved configurations for specific resume variants
+
+    required_dimensions:
+      - language
+      - role_track
+      - tags
+
+  languages:
+    supported:
+      - en
+      - sv
+
+  role_tracks:
+    main:
+      - technical_delivery
+      - technical_project_management
+      - integration
+    overlays:
+      - ai_overlay
+
+  recommended_file_structure:
+    tree:
+      - src/
+      - src/components/
+      - src/components/resume/
+      - src/components/editor/
+      - src/components/layout/
+      - src/routes/
+      - src/routes/index.tsx
+      - src/routes/preview.tsx
+      - src/routes/presets.tsx
+      - src/lib/
+      - src/lib/resume/
+      - src/lib/resume/schema.ts
+      - src/lib/resume/compose.ts
+      - src/lib/resume/load.ts
+      - src/lib/resume/types.ts
+      - src/lib/resume/presets.ts
+      - src/lib/utils/
+      - src/styles/
+      - src/styles/print.css
+      - data/
+      - data/profile.en.yaml
+      - data/profile.sv.yaml
+      - data/modules/
+      - data/modules/summaries.en.yaml
+      - data/modules/summaries.sv.yaml
+      - data/modules/strengths.en.yaml
+      - data/modules/strengths.sv.yaml
+      - data/modules/impacts.en.yaml
+      - data/modules/impacts.sv.yaml
+      - data/modules/experience.en.yaml
+      - data/modules/experience.sv.yaml
+      - data/modules/overlays.en.yaml
+      - data/modules/overlays.sv.yaml
+      - data/modules/education.en.yaml
+      - data/modules/education.sv.yaml
+      - data/modules/certifications.en.yaml
+      - data/modules/certifications.sv.yaml
+      - data/presets/
+      - data/presets/technical-delivery.en.yaml
+      - data/presets/tpm.en.yaml
+      - data/presets/integration.en.yaml
+      - data/presets/technical-delivery.sv.yaml
+
+  core_idea:
+    composition_pipeline:
+      - Load profile for selected language
+      - Load preset or current UI selections
+      - Resolve summary block by role track and language
+      - Resolve selected impact block
+      - Resolve strengths block
+      - Resolve experience entries and choose bullets by tags
+      - Optionally inject overlay section
+      - Resolve education/certifications/stack/languages
+      - Render into a print layout
+
+  data_schema:
+    profile_example:
+      name: Nicolas Brulay
+      title: "Technical Delivery Lead | AI Workflows, Integrations, Web Platforms"
+      contact:
+        location: "Mölndal / Gothenburg, Sweden"
+        email: "your@email.com"
+        phone: "+46 ..."
+        linkedin: "linkedin.com/in/..."
+        portfolio: "balllightning.cloud"
+
+    summary_module_example:
+      id: technical_delivery_core
+      language: en
+      role_track: technical_delivery
+      text: >
+        Technical delivery lead with hands-on experience across AI workflows,
+        integrations, SaaS-like products, and modern web platforms.
+
+    strength_block_example:
+      id: technical_delivery_strengths
+      language: en
+      role_track: technical_delivery
+      items:
+        - Technical project delivery
+        - Systems integration
+        - API integration
+        - AI workflows and agentic delivery practices
+
+    impact_block_example:
+      id: technical_delivery_impacts
+      language: en
+      role_track: technical_delivery
+      items:
+        - Built and operated a Web3 purchase and crediting system...
+        - Led complex integration and migration work...
+
+    experience_entry_example:
+      id: ball_lightning
+      language: en
+      company: Ball Lightning AB
+      role: "Founder | Technical Delivery Lead"
+      dates: "2022–Present"
+      location: "Mölndal, Sweden"
+      bullets:
+        - id: bl_delivery_1
+          tags: [technical_delivery, tpm]
+          text: >
+            Lead delivery of digital products across AI workflows, integrations,
+            and modern web platforms.
+        - id: bl_ai_1
+          tags: [technical_delivery, ai_overlay]
+          text: >
+            Use AI-assisted and agentic workflows to accelerate planning,
+            documentation, iteration, and delivery while maintaining quality
+            and accountability.
+        - id: bl_builder_1
+          tags: [technical_delivery, integration]
+          text: >
+            Deliver API, identity, payment, automation, and platform integrations
+            across client and product work.
+
+    preset_example:
+      id: technical-delivery-en
+      language: en
+      role_track: technical_delivery
+      include_overlay:
+        - ai_overlay
+      selected_sections:
+        - summary
+        - selected_impact
+        - strengths
+        - experience
+        - ai_overlay
+        - education
+        - certifications
+        - stack
+        - languages
+      experience_rules:
+        ball_lightning:
+          max_bullets: 5
+          prefer_tags: [technical_delivery, ai_overlay]
+        blightfell:
+          max_bullets: 4
+          prefer_tags: [technical_delivery, integration]
+        dhl_grouped:
+          max_bullets: 4
+          prefer_tags: [technical_delivery, integration, tpm]
+
+  ui:
+    routes:
+      index:
+        purpose: >
+          Main builder screen. Select language, role track, overlay, and preset.
+      preview:
+        purpose: >
+          Full-page resume preview with print layout.
+      presets:
+        purpose: >
+          Load/save preset configurations.
+    main_panels:
+      - controls_panel
+      - live_preview_panel
+    controls:
+      - language_select
+      - role_track_select
+      - overlay_toggle
+      - preset_select
+      - include_section_checkboxes
+      - experience_priority_controls
+      - export_button
+      - print_button
+
+  components:
+    resume_rendering:
+      - ResumeDocument
+      - ResumeHeader
+      - ResumeSummary
+      - ResumeSelectedImpact
+      - ResumeStrengths
+      - ResumeExperienceSection
+      - ResumeExperienceItem
+      - ResumeOverlaySection
+      - ResumeEducation
+      - ResumeCertifications
+      - ResumeStack
+      - ResumeLanguages
+
+    editor:
+      - BuilderControls
+      - PresetSelector
+      - LanguageSwitcher
+      - RoleTrackSelector
+      - SectionToggleList
+      - ExperienceRuleEditor
+      - OverlayToggleGroup
+
+    layout:
+      - AppShell
+      - TwoPaneLayout
+      - PrintContainer
+
+  rendering_rules:
+    page_target: 2
+    resume_style:
+      - clean
+      - ATS-friendly
+      - low-decoration
+      - print-first
+    typography:
+      - use one sans family
+      - slightly condensed headings acceptable
+      - avoid decorative branding
+    spacing:
+      - compact but readable
+      - consistent section rhythm
+    print:
+      - use A4 print CSS
+      - prevent awkward section breaks
+      - allow manual page-break utilities if needed
+
+  state_management:
+    v1:
+      approach: local component state + derived composed document
+      persistence: localStorage for last-used preset and selections
+    later:
+      approach: save named presets to local YAML or JSON
+
+  logic:
+    composition_function:
+      name: composeResumeDocument
+      input:
+        - language
+        - role_track
+        - selected_overlay_ids
+        - preset
+      output:
+        - fully composed document model ready for render
+
+    rules:
+      - Prefer tagged bullets matching the selected role track
+      - Respect max bullets per experience entry
+      - Allow specific entries to be hidden for some outputs
+      - Allow optional overlay insertion after experience or before education
+
+  tanstack_start_notes:
+    guidance:
+      - Keep data loading local and synchronous for v1
+      - Use route loaders only if you want clean separation
+      - Avoid overengineering server functions initially
+      - Keep the app usable as a local static-ish tool first
+    good_fit:
+      - TanStack Router for /, /preview, /presets
+      - Strong typing with Zod for all loaded YAML
+      - Search params can encode active preset/language/track
+
+  shadcn_usage:
+    recommended_components:
+      - Card
+      - Button
+      - Select
+      - Switch
+      - Checkbox
+      - Tabs
+      - Separator
+      - ScrollArea
+      - Sheet
+      - Tooltip
+    principle: >
+      Use shadcn for the builder UI, not for the resume document styling itself.
+      The resume output should be mostly plain semantic layout + Tailwind print classes.
+
+  v1_mvp:
+    features:
+      - Load YAML content files
+      - Select EN/SV
+      - Select one of three role tracks
+      - Toggle AI overlay
+      - Live preview
+      - Print to PDF
+      - Save/load simple presets in localStorage
+    skip_for_now:
+      - Drag and drop bullet ordering
+      - Rich text editing
+      - Inline YAML editing
+      - Authentication
+      - Shareable cloud links
+
+  v2:
+    improvements:
+      - Preset files editable from UI
+      - Manual bullet overrides per resume
+      - Multiple visual templates
+      - Export to DOCX or markdown
+      - Small case-bank browser
+      - Cover letter composer using same modules
+
+  how_to_use:
+    first_setup:
+      - Generate your TanStack Start + shadcn project
+      - Add the folder structure above
+      - Create Zod schemas for every YAML file type
+      - Add a YAML loader utility
+      - Create the composeResumeDocument function
+      - Build the main builder page with controls on the left and preview on the right
+      - Add print CSS for A4
+      - Add three English presets first
+      - Add Swedish once the English output feels stable
+
+    daily_workflow:
+      - Update or add content in YAML only
+      - Open the local app
+      - Choose target role track
+      - Toggle AI overlay if relevant
+      - Review preview
+      - Print to PDF
+      - Save preset if the result is worth reusing
+
+  recommended_build_order:
+    step_1: "Set up schemas and sample YAML files"
+    step_2: "Render one static resume preview from a hardcoded preset"
+    step_3: "Add role track switching"
+    step_4: "Add language switching"
+    step_5: "Add overlay toggles"
+    step_6: "Add preset persistence"
+    step_7: "Polish print CSS"
+    step_8: "Add Swedish modules"
+
+  starter_presets:
+    - technical-delivery-en
+    - technical-project-management-en
+    - integration-en
+    - technical-delivery-en-with-ai-overlay
+
+  recommended_next_output_from_me:
+    - "Zod schema design"
+    - "sample YAML files for the English v1 content"
+    - "composeResumeDocument TypeScript types and logic outline"
+    - "initial route/component scaffold for TanStack Start + shadcn"
+
+  implementation_note:
+    title: Runtime data and composition contract
+    summary: >
+      The modular-resume-composer uses a strict separation between documentation,
+      runtime content, and composition logic.
+
+    structure:
+      specs:
+        purpose: >
+          Holds the PDD, memory-bank, and implementation notes only.
+      data:
+        purpose: >
+          Holds runtime resume content in YAML. This is the source of truth for profile,
+          reusable modules, and presets.
+        subfolders:
+          profile: Shared identity/contact/title-line data per language
+          modules: Reusable summaries, strengths, impacts, experience, overlays, education, certifications, and stack blocks
+          presets: >
+            Output recipes that define role track, section order, overlays, and
+            per-entry bullet selection rules
+      src_lib_resume:
+        purpose: >
+          Holds the implementation contract and composition logic used by the app.
+        files:
+          - schema.ts
+          - types.ts
+          - compose.ts
+
+    current_status:
+      - English starter data files created under data/profile, data/modules, and data/presets
+      - Initial runtime contract created in src/lib/resume/schema.ts
+      - Initial TypeScript model created in src/lib/resume/types.ts
+      - Initial composition logic created in src/lib/resume/compose.ts
+      - Minimal usage pattern saved under specs/current-changes/Minimal-usage-pattern.yaml
+
+    implementation_rule:
+      - Do not hardcode resume content in UI components
+      - Validate loaded YAML against Zod schemas before composition
+      - Compose a document model first, then render it
+      - Treat AI emphasis as an overlay, not a separate default resume
+      - Add Swedish by mirroring the English data structure once EN output is stable
