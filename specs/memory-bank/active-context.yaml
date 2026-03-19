@@ -1,5 +1,5 @@
 meta:
-  release: "0.0.1"
+  release: "0.0.2"
   repo: github.com/BallLightningAB/modular-resume-composer
   project:
   pdd_version:
@@ -14,23 +14,34 @@ meta:
 roadmap:
   current:
   recent_done:
-    - id: "init"
-      issue: ""
-      title: "init"
+    - id: "project-init"
+      issue: "https://github.com/BallLightningAB/modular-resume-composer/issues/1"
+      title: "Project initialization and Biome setup"
       status: completed
       priority:
       labels:
-        - type:
-        - area:
+        - type: feature
+        - area: research-and-planning
       deliverables:
-        - "[completed] I1D1: init"
+        - "[completed] I1D1: Initial Project Setup"
+        - "[completed] I2D1: Biome Setup"
+        - "[completed] I3D1: GitHub Labels Migration"
       progress_log:
-        - "Project initialized with modular resume composer foundation"
-        - "MIT license added and repository pushed to GitHub"
+        - "Repository creation and initial commit"
+        - "MIT license addition"
+        - "Basic project structure with TanStack Start"
+        - "Memory bank setup with active-context.yaml and CHANGELOG.yaml"
+        - "Core resume composition modules and schema implementation"
+        - "Install @biomejs/biome dev dependency"
+        - "Add biome.json configuration with Tailwind CSS support"
+        - "Update package.json scripts to use biome commands"
+        - "Apply biome formatting and linting fixes across codebase"
+        - "Delete all default GitHub labels"
+        - "Import area labels from BallLightning repo"
+        - "Import type labels from BallLightning repo"
       est:
-        dev_h: 1
+        dev_h: 3
         test_h: 0
       remaining_deliverables: []
       sub_issues: []
-  recent_done:
   next_steps:

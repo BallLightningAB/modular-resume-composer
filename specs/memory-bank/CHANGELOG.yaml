@@ -1,5 +1,13 @@
 entries:
   - date: "2026-03-19"
+    version: "0.0.2"
+    issue: "1"
+    commit: TBD
+    status: completed
+    title: "Project initialization and Biome setup"
+
+    Refs: v0.0.2 #1
+  - date: "2026-03-19"
     version: "0.0.1"
     issue: ""
     commit: be23337
