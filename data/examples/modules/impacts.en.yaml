@@ -1,0 +1,26 @@
+version: "1"
+items:
+  - id: impacts-technical-delivery
+    language: en
+    role_track: technical_delivery
+    title: Selected impact
+    items:
+      - Led a portfolio reset that reduced delivery ambiguity, clarified ownership, and improved release confidence across multiple teams.
+      - Introduced operating cadences and delivery guardrails that shortened escalation cycles and made status reporting decision-ready.
+      - Helped teams package platform and AI initiatives into clearer milestones that executives could fund and review.
+  - id: impacts-technical-project-management
+    language: en
+    role_track: technical_project_management
+    title: Selected impact
+    items:
+      - Reframed a delayed program into phased milestones with explicit risks, dependencies, and recovery actions.
+      - Improved stakeholder visibility through tighter planning, reporting, and issue management patterns.
+      - Raised delivery predictability by connecting roadmap commitments to engineering capacity and sequencing.
+  - id: impacts-integration
+    language: en
+    role_track: integration
+    title: Selected impact
+    items:
+      - Simplified integration architecture and rollout planning for multi-system initiatives with operational dependencies.
+      - Reduced downstream friction by standardizing interface expectations, ownership, and support paths.
+      - Helped teams move from brittle point solutions to more maintainable service and API contracts.

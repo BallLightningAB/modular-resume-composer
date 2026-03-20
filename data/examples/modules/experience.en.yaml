@@ -1,0 +1,117 @@
+version: "1"
+entries:
+  - id: northstar-platform
+    language: en
+    company: Northstar Platform
+    role: Senior Technical Delivery Lead
+    dates: 2022 - Present
+    location: Stockholm, Sweden
+    subtitle: Platform modernization and AI-assisted delivery
+    bullets:
+      - id: northstar-delivery-model
+        text: Built a delivery operating model for platform and AI initiatives that aligned engineering execution with quarterly business goals.
+        tags:
+          - technical_delivery
+          - operating_model
+          - ai
+        priority: 95
+      - id: northstar-stakeholder-clarity
+        text: Introduced decision-oriented reporting and risk tracking that improved stakeholder clarity across product, engineering, and leadership.
+        tags:
+          - technical_project_management
+          - stakeholder_management
+          - governance
+        priority: 84
+      - id: northstar-integration-roadmap
+        text: Sequenced integration dependencies across internal and partner systems to reduce rollout friction and improve release readiness.
+        tags:
+          - integration
+          - architecture
+          - planning
+        priority: 88
+      - id: northstar-value-framing
+        text: Helped teams package technical work into milestone-based narratives that improved prioritization and funding conversations.
+        tags:
+          - technical_delivery
+          - product
+          - communication
+        priority: 82
+      - id: northstar-release-coaching
+        text: Coached squads on lean release planning, dependency management, and escalation paths for high-visibility launches.
+        tags:
+          - technical_project_management
+          - technical_delivery
+          - delivery
+        priority: 79
+  - id: orbit-commerce
+    language: en
+    company: Orbit Commerce Group
+    role: Technical Project Manager
+    dates: 2019 - 2022
+    location: Gothenburg, Sweden
+    subtitle: Cross-functional commerce and data programs
+    bullets:
+      - id: orbit-program-reset
+        text: Replanned a delayed commerce program into phased deliverables with explicit risk ownership, dependency mapping, and recovery checkpoints.
+        tags:
+          - technical_project_management
+          - planning
+          - governance
+        priority: 93
+      - id: orbit-integration-governance
+        text: Coordinated API, data, and vendor dependencies across multiple workstreams to keep launches on track.
+        tags:
+          - integration
+          - vendor_management
+          - technical_project_management
+        priority: 86
+      - id: orbit-roadmap-translation
+        text: Translated roadmap priorities into engineering-ready milestones and clearer delivery communications for non-technical stakeholders.
+        tags:
+          - technical_delivery
+          - communication
+          - planning
+        priority: 78
+      - id: orbit-metrics-rhythm
+        text: Established weekly program metrics and issue review rituals that improved visibility and decision speed.
+        tags:
+          - technical_project_management
+          - metrics
+          - operating_model
+        priority: 80
+  - id: atlas-integrations
+    language: en
+    company: Atlas Integrations
+    role: Integration Consultant
+    dates: 2016 - 2019
+    location: Malmö, Sweden
+    subtitle: API design, vendor onboarding, and service transitions
+    bullets:
+      - id: atlas-api-contracts
+        text: Defined service and API contracts that reduced ambiguity during partner onboarding and post-launch support.
+        tags:
+          - integration
+          - architecture
+          - api
+        priority: 92
+      - id: atlas-migration-plans
+        text: Planned system migrations with explicit cutover, rollback, and support paths for operational teams.
+        tags:
+          - integration
+          - migration
+          - delivery
+        priority: 87
+      - id: atlas-workshop-facilitation
+        text: Facilitated technical workshops that helped client teams converge on scope, interface ownership, and rollout sequencing.
+        tags:
+          - technical_delivery
+          - integration
+          - stakeholder_management
+        priority: 76
+      - id: atlas-documentation-upgrade
+        text: Standardized integration documentation and support handoffs to improve maintainability after go-live.
+        tags:
+          - integration
+          - operations
+          - documentation
+        priority: 74

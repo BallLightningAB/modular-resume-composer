@@ -1,0 +1,9 @@
+version: "1"
+items:
+  - id: certifications-core
+    language: en
+    title: Certifications
+    items:
+      - Professional Scrum Master I
+      - AWS Certified Cloud Practitioner
+      - ITIL Foundation

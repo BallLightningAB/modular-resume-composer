@@ -7,10 +7,14 @@ import type {
 	ExperienceFileSchema,
 	ExperienceRuleSchema,
 	LanguageCodeSchema,
+	LastUsedResumeStateSchema,
 	LoadedResumeModulesSchema,
 	PresetFileSchema,
 	ProfileFileSchema,
 	RoleTrackSchema,
+	SavedPresetCollectionSchema,
+	SavedPresetRecordSchema,
+	SavedPresetUiSchema,
 	SectionKeySchema,
 	SummariesFileSchema,
 	SummaryItemSchema,
@@ -31,6 +35,10 @@ export type LoadedResumeModules = z.infer<typeof LoadedResumeModulesSchema>;
 export type SummaryItem = z.infer<typeof SummaryItemSchema>;
 export type BlockItem = z.infer<typeof BlockItemSchema>;
 export type ExperienceBullet = z.infer<typeof ExperienceBulletSchema>;
+export type SavedPresetUi = z.infer<typeof SavedPresetUiSchema>;
+export type SavedPresetRecord = z.infer<typeof SavedPresetRecordSchema>;
+export type SavedPresetCollection = z.infer<typeof SavedPresetCollectionSchema>;
+export type LastUsedResumeState = z.infer<typeof LastUsedResumeStateSchema>;
 
 export interface ComposeResumeInput {
 	modules: LoadedResumeModules;
@@ -62,6 +70,12 @@ export interface ComposedOverlaySection {
 	items: Array<string>;
 }
 
+export interface ComposedBlockSection {
+	id: string;
+	title?: string;
+	items: Array<string>;
+}
+
 export interface ComposedResumeDocument {
 	metadata: {
 		preset_id: string;
@@ -72,32 +86,15 @@ export interface ComposedResumeDocument {
 	title_line?: string;
 	section_order: Array<SectionKey>;
 	summary?: string;
-	selected_impact?: {
-		id: string;
-		title?: string;
-		items: Array<string>;
-	};
-	strengths?: {
-		id: string;
-		title?: string;
-		items: Array<string>;
+	selected_impact?: ComposedBlockSection;
+	strengths?: ComposedBlockSection & {
+		overlay_sections: Array<ComposedOverlaySection>;
 	};
 	experience: Array<ComposedExperienceEntry>;
 	overlays: Array<ComposedOverlaySection>;
-	education?: {
-		id: string;
-		title?: string;
-		items: Array<string>;
-	};
-	certifications?: {
-		id: string;
-		title?: string;
-		items: Array<string>;
-	};
-	stack?: {
-		id: string;
-		title?: string;
-		items: Array<string>;
-	};
+	education?: ComposedBlockSection;
+	certifications?: ComposedBlockSection;
+	references?: ComposedBlockSection;
+	stack?: ComposedBlockSection;
 	languages: Array<string>;
 }

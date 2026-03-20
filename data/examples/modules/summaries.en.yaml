@@ -1,0 +1,14 @@
+version: "1"
+items:
+  - id: summary-technical-delivery
+    language: en
+    role_track: technical_delivery
+    text: Delivery leader who turns ambiguous platform, product, and AI initiatives into shipped outcomes through strong technical framing, practical execution plans, and calm stakeholder management.
+  - id: summary-technical-project-management
+    language: en
+    role_track: technical_project_management
+    text: Technical project manager focused on aligning engineering work with commercial goals, de-risking delivery, and keeping cross-functional programs clear, measurable, and moving.
+  - id: summary-integration
+    language: en
+    role_track: integration
+    text: Integration specialist who designs dependable system boundaries, simplifies data flows, and helps teams modernize APIs and operational handoffs without losing delivery momentum.

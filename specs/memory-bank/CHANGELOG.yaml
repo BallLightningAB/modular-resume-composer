@@ -1,17 +1,42 @@
 entries:
-  - date: "2026-03-19"
-    version: "0.0.2"
-    issue: "1"
+  - date: "2026-03-20"
+    version: "0.0.3"
+    issue: "https://github.com/BallLightningAB/modular-resume-composer/issues/3"
     commit: TBD
     status: completed
-    title: "Project initialization and Biome setup"
+    title: "feat(preview): polish PDF layout, references module, and strengths/overlay composition"
+    details: |-
+      - Added optional `references` module loading, schema support, preset wiring, and example reference content
+      - Merged selected overlay content into strengths with a cleaner print-focused layout and dashed divider
+      - Reordered presets so `stack` renders after `experience` and before `education` for better flow
+      - Improved print styling with keep-together behavior and hid the devtools badge from PDF output
+      - Added lightweight character-count hover hints for overlay modules to support modular budgeting
+      - Tightened strengths layout with denser two-column print-friendly grid and smaller padding
 
-    Refs: v0.0.2 #1
+      Refs: v0.0.3 #3 I3D1-I3D3
+  - date: "2026-03-20"
+    version: "0.0.2"
+    issue: "https://github.com/BallLightningAB/modular-resume-composer/issues/4"
+    commit: TBD
+    status: completed
+    title: "feat(core): implement first working resume composer prototype"
+    details: |-
+      - Implemented server-side YAML loading with data/private precedence and data/examples fallback
+      - Added local-first builder state with saved preset wrapper persistence and last-used state restoration
+      - Replaced starter UI with builder, preview, and presets routes backed by TanStack Router search state
+      - Added root-level router error and not-found fallbacks plus tolerant block-item parsing for mixed YAML item shapes
+      - Expanded YAML version parsing so numeric `version` fields are accepted and normalized to strings
+      - Hardened YAML loading so malformed private files fall back to examples instead of crashing route resolution
+      - Added semantic resume preview rendering and dedicated /preview and /presets routes
+      - Added public example dataset under data/examples for English demo usage
+      - Added loader helpers, builder utilities, search parsing, and local storage helpers
+
+      Refs: v0.0.2 #4 I2D1-I2D7
   - date: "2026-03-19"
     version: "0.0.1"
-    issue: ""
+    issue: "https://github.com/BallLightningAB/modular-resume-composer/issues/1"
     commit: be23337
     status: completed
-    title: "init"
+    title: "feat(project): initialize modular resume composer"
 
     Refs: v0.0.1 #1

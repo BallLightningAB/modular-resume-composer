@@ -1,0 +1,8 @@
+version: "1"
+items:
+  - id: education-core
+    language: en
+    title: Education
+    items:
+      - M.Sc. in Software Engineering, Lund University
+      - B.Sc. in Informatics, University of Gothenburg

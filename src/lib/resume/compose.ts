@@ -169,6 +169,7 @@ export function composeResumeDocument(input: ComposeResumeInput): ComposedResume
 		impacts,
 		experience,
 		overlays,
+		references,
 		education,
 		certifications,
 		stack,
@@ -207,6 +208,13 @@ export function composeResumeDocument(input: ComposeResumeInput): ComposedResume
 		language: preset.language,
 		roleTrack: preset.role_track,
 		blockId: preset.certifications_id,
+	});
+
+	const referencesBlock = resolveBlock({
+		collection: references,
+		language: preset.language,
+		roleTrack: preset.role_track,
+		blockId: preset.references_id,
 	});
 
 	const stackBlock = resolveBlock({
@@ -266,10 +274,18 @@ export function composeResumeDocument(input: ComposeResumeInput): ComposedResume
 					id: strengthsBlock.id,
 					title: strengthsBlock.title,
 					items: strengthsBlock.items,
+					overlay_sections: overlaySections,
 				}
 			: undefined,
 		experience: composedExperience,
 		overlays: overlaySections,
+		stack: stackBlock
+			? {
+					id: stackBlock.id,
+					title: stackBlock.title,
+					items: stackBlock.items,
+				}
+			: undefined,
 		education: educationBlock
 			? {
 					id: educationBlock.id,
@@ -284,11 +300,11 @@ export function composeResumeDocument(input: ComposeResumeInput): ComposedResume
 					items: certificationsBlock.items,
 				}
 			: undefined,
-		stack: stackBlock
+		references: referencesBlock
 			? {
-					id: stackBlock.id,
-					title: stackBlock.title,
-					items: stackBlock.items,
+					id: referencesBlock.id,
+					title: referencesBlock.title,
+					items: referencesBlock.items,
 				}
 			: undefined,
 		languages: profile.languages.map(

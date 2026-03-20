@@ -1,0 +1,16 @@
+version: "1"
+items:
+  - id: ai-leadership
+    language: en
+    title: AI delivery overlay
+    items:
+      - Frames AI work around value, capability constraints, and operating change rather than feature novelty.
+      - Helps teams evaluate automation opportunities, human review points, and rollout risk before scaling.
+      - Brings structure to experimentation, governance, and cross-functional adoption planning.
+  - id: modern-platforms
+    language: en
+    title: Platform modernization overlay
+    items:
+      - Connects modernization investments to simpler delivery, reliability, and team effectiveness.
+      - Clarifies migration phases, service boundaries, and ownership during transitional states.
+      - Balances long-term architecture direction with near-term release commitments.

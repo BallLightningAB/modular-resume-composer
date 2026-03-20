@@ -1,0 +1,11 @@
+version: "1"
+items:
+  - id: stack-core
+    language: en
+    title: Tools and platforms
+    items:
+      - Delivery leadership, roadmap planning, stakeholder management
+      - Platform modernization, integration architecture, API strategy
+      - Agile delivery, risk management, dependency mapping
+      - AI-assisted workflows, experiment framing, rollout governance
+      - Jira, Confluence, Miro, Notion, Figma, GitHub

@@ -1,0 +1,18 @@
+version: "1"
+person:
+  name: Alex Example
+  contact:
+    location: Stockholm, Sweden
+    email: alex@example.dev
+    phone: "+46 70 555 01 01"
+    linkedin: linkedin.com/in/alex-example
+    portfolio: alexexample.dev
+title_lines:
+  technical_delivery: Technical Delivery Lead
+  technical_project_management: Technical Project Manager
+  integration: Integration Architect
+languages:
+  - name: English
+    proficiency: Native
+  - name: Swedish
+    proficiency: Professional working proficiency

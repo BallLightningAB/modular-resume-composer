@@ -128,3 +128,31 @@
 		@apply font-sans;
 	}
 }
+
+@media print {
+	.resume-sheet {
+		break-inside: avoid;
+	}
+
+	.resume-section,
+	.resume-entry,
+	.break-inside-avoid-page {
+		break-inside: avoid-page;
+		page-break-inside: avoid;
+	}
+
+	.resume-section > h2,
+	.resume-entry h3 {
+		break-after: avoid-page;
+		page-break-after: avoid;
+	}
+
+	a[href] {
+		text-decoration: none;
+		color: inherit;
+	}
+
+	@page {
+		margin: 12mm;
+	}
+}

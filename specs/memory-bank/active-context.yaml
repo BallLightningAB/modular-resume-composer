@@ -1,5 +1,5 @@
 meta:
-  release: "0.0.2"
+  release: "0.0.3"
   repo: github.com/BallLightningAB/modular-resume-composer
   project:
   pdd_version:
@@ -13,7 +13,62 @@ meta:
   # - I3Docs / I3UI / I3Fix / I3Test / I3Biome: tags for documentation, UI polish, minor fixes, tests and Biome/tooling work not tied to a single deliverable
 roadmap:
   current:
+    - id: "prototype-polish"
+      issue: "https://github.com/BallLightningAB/modular-resume-composer/issues/3"
+      title: "First working prototype preview/layout polish"
+      status: in_progress
+      priority:
+      labels:
+        - type: feature
+        - area: frontend
+      deliverables:
+        - "[completed] I3D1: Add references module and preset support"
+        - "[completed] I3D2: Merge overlays into strengths and tighten strengths layout"
+        - "[completed] I3D3: Improve print preview pagination and remove app-controlled print chrome"
+        - "[planned] I3D4: Enable in-app editing of resume modules and presets (moved to #2)"
+      progress_log:
+        - "Added references loading, schema support, preset wiring, and example reference content"
+        - "Moved stack ahead of education in preset section ordering and merged overlay content into strengths"
+        - "Improved print styling with keep-together behavior and hid the devtools badge from PDF output"
+        - "Added lightweight character-count hover hints for overlay modules to support modular budgeting"
+      est:
+        dev_h: 4
+        test_h: 1
+      remaining_deliverables: []
+      sub_issues:
+        - id: "in-app-module-editing"
+          issue: "https://github.com/BallLightningAB/modular-resume-composer/issues/2"
+          title: "Enable in-app editing of resume modules and presets"
+          status: planned
   recent_done:
+    - id: "first-prototype"
+      issue: "https://github.com/BallLightningAB/modular-resume-composer/issues/4"
+      title: "First working resume composer prototype"
+      status: completed
+      priority:
+      labels:
+        - type: feature
+        - area: core
+      deliverables:
+        - "[completed] I2D1: Implement server-side YAML loading with data/private precedence and data/examples fallback"
+        - "[completed] I2D2: Add local-first builder state with saved preset wrapper persistence and last-used state restoration"
+        - "[completed] I2D3: Replace starter UI with builder, preview, and presets routes backed by TanStack Router search state"
+        - "[completed] I2D4: Add root-level router error and not-found fallbacks plus tolerant block-item parsing for mixed YAML item shapes"
+        - "[completed] I2D5: Expand YAML version parsing so numeric `version` fields are accepted and normalized to strings"
+        - "[completed] I2D6: Harden YAML loading so malformed private files fall back to examples instead of crashing route resolution"
+        - "[completed] I2D7: Add semantic resume preview rendering and dedicated /preview and /presets routes"
+      progress_log:
+        - "Implemented server-side YAML loading with data/private precedence and data/examples fallback"
+        - "Added local-first builder state, saved preset wrapper persistence, and last-used state restoration"
+        - "Replaced starter UI with builder, preview, and presets routes backed by TanStack Router search state"
+        - "Added root-level router error and not-found fallbacks plus tolerant block-item parsing for mixed YAML item shapes"
+        - "Expanded YAML version parsing so numeric `version` fields are accepted and normalized to strings"
+        - "Hardened YAML loading so malformed private files fall back to examples instead of crashing route resolution"
+        - "Added semantic resume preview rendering and dedicated /preview and /presets routes"
+      est:
+        dev_h: 8
+        test_h: 2
+      remaining_deliverables: []
     - id: "project-init"
       issue: "https://github.com/BallLightningAB/modular-resume-composer/issues/1"
       title: "Project initialization and Biome setup"

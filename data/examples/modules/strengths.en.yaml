@@ -1,0 +1,43 @@
+version: "1"
+items:
+  - id: strengths-technical-delivery
+    language: en
+    role_track: technical_delivery
+    title: Core strengths
+    items:
+      - Technical project delivery
+      - Systems integration
+      - API integration
+      - AI workflows and agentic delivery practices
+      - Product delivery and stakeholder alignment
+      - Requirements management and scope clarity
+      - Automation and operational readiness
+      - SaaS and modern web platform delivery
+      - Web3-adjacent systems
+      - Cross-functional leadership
+  - id: strengths-technical-project-management
+    language: en
+    role_track: technical_project_management
+    title: Core strengths
+    items:
+      - Program planning and sequencing
+      - Dependency and risk management
+      - Executive and stakeholder reporting
+      - Scope governance and prioritization
+      - Cross-functional delivery cadence
+      - Issue escalation and resolution
+      - Delivery metrics and operating rhythms
+      - Technical team coordination
+  - id: strengths-integration
+    language: en
+    role_track: integration
+    title: Core strengths
+    items:
+      - Systems and service integration
+      - API and interface contract design
+      - Migration and cutover planning
+      - Vendor and partner onboarding
+      - Interoperability and platform adoption
+      - Support handoff and documentation
+      - Rollout sequencing and readiness
+      - Operational dependency mapping

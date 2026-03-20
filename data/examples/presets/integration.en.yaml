@@ -1,0 +1,52 @@
+id: integration
+language: en
+role_track: integration
+title_line: Integration Architect
+summary_id: summary-integration
+impacts_id: impacts-integration
+strengths_id: strengths-integration
+references_id: references-core
+education_id: education-core
+certifications_id: certifications-core
+stack_id: stack-core
+overlay_ids:
+  - modern-platforms
+section_order:
+  - summary
+  - selected_impact
+  - strengths
+  - experience
+  - stack
+  - education
+  - certifications
+  - references
+  - languages
+experience:
+  - entry_id: northstar-platform
+    max_bullets: 3
+    prefer_tags:
+      - integration
+      - architecture
+      - planning
+    required_tags: []
+    exclude_tags: []
+    force_bullet_ids: []
+  - entry_id: orbit-commerce
+    max_bullets: 3
+    prefer_tags:
+      - integration
+      - vendor_management
+    required_tags: []
+    exclude_tags: []
+    force_bullet_ids: []
+  - entry_id: atlas-integrations
+    max_bullets: 4
+    prefer_tags:
+      - integration
+      - architecture
+      - api
+      - migration
+    required_tags: []
+    exclude_tags: []
+    force_bullet_ids:
+      - atlas-api-contracts

@@ -1,0 +1,8 @@
+version: "1"
+items:
+  - id: references-core
+    language: en
+    title: References
+    items:
+      - Krishna Babu | Worldwide Inc. / CEO | +123 456 7890 | krishna@worldwideinc.com
+      - Sharvin Verma | Worldwide Inc. / CTO | +123 456 7890 | sharvin@worldwideinc.com

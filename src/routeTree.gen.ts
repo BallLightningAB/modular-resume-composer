@@ -9,8 +9,20 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root';
+import { Route as PreviewRouteImport } from './routes/preview';
+import { Route as PresetsRouteImport } from './routes/presets';
 import { Route as IndexRouteImport } from './routes/index';
 
+const PreviewRoute = PreviewRouteImport.update({
+	id: '/preview',
+	path: '/preview',
+	getParentRoute: () => rootRouteImport,
+} as any);
+const PresetsRoute = PresetsRouteImport.update({
+	id: '/presets',
+	path: '/presets',
+	getParentRoute: () => rootRouteImport,
+} as any);
 const IndexRoute = IndexRouteImport.update({
 	id: '/',
 	path: '/',
@@ -19,28 +31,50 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
 	'/': typeof IndexRoute;
+	'/presets': typeof PresetsRoute;
+	'/preview': typeof PreviewRoute;
 }
 export interface FileRoutesByTo {
 	'/': typeof IndexRoute;
+	'/presets': typeof PresetsRoute;
+	'/preview': typeof PreviewRoute;
 }
 export interface FileRoutesById {
 	__root__: typeof rootRouteImport;
 	'/': typeof IndexRoute;
+	'/presets': typeof PresetsRoute;
+	'/preview': typeof PreviewRoute;
 }
 export interface FileRouteTypes {
 	fileRoutesByFullPath: FileRoutesByFullPath;
-	fullPaths: '/';
+	fullPaths: '/' | '/presets' | '/preview';
 	fileRoutesByTo: FileRoutesByTo;
-	to: '/';
-	id: '__root__' | '/';
+	to: '/' | '/presets' | '/preview';
+	id: '__root__' | '/' | '/presets' | '/preview';
 	fileRoutesById: FileRoutesById;
 }
 export interface RootRouteChildren {
 	IndexRoute: typeof IndexRoute;
+	PresetsRoute: typeof PresetsRoute;
+	PreviewRoute: typeof PreviewRoute;
 }
 
 declare module '@tanstack/react-router' {
 	interface FileRoutesByPath {
+		'/preview': {
+			id: '/preview';
+			path: '/preview';
+			fullPath: '/preview';
+			preLoaderRoute: typeof PreviewRouteImport;
+			parentRoute: typeof rootRouteImport;
+		};
+		'/presets': {
+			id: '/presets';
+			path: '/presets';
+			fullPath: '/presets';
+			preLoaderRoute: typeof PresetsRouteImport;
+			parentRoute: typeof rootRouteImport;
+		};
 		'/': {
 			id: '/';
 			path: '/';
@@ -53,14 +87,15 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
 	IndexRoute: IndexRoute,
+	PresetsRoute: PresetsRoute,
+	PreviewRoute: PreviewRoute,
 };
 export const routeTree = rootRouteImport
 	._addFileChildren(rootRouteChildren)
 	._addFileTypes<FileRouteTypes>();
 
-import type { createStart } from '@tanstack/react-start';
 import type { getRouter } from './router.tsx';
-
+import type { createStart } from '@tanstack/react-start';
 declare module '@tanstack/react-start' {
 	interface Register {
 		ssr: true;
