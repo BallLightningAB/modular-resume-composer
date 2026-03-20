@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { ActionLink } from '@/components/resume/action-link';
 import { ResumeDocument } from '@/components/resume/resume-document';
 import { Button } from '@/components/ui/button';
+import { getBudgetMetrics } from '@/lib/resume/budget';
 import { deriveBuilderState, deriveBuilderStateFromLastUsed } from '@/lib/resume/builder';
 import { composeResumeDocument } from '@/lib/resume/compose';
 import type { ResumeRuntimeData } from '@/lib/resume/load';
@@ -131,6 +132,7 @@ function PreviewRouteComponent() {
 			}),
 		[builderState.preset, runtimeData.modules]
 	);
+	const budgetMetrics = useMemo(() => getBudgetMetrics(document), [document]);
 
 	return (
 		<div className="min-h-screen bg-slate-100 px-4 py-6 sm:px-6 print:bg-white print:p-0">
@@ -141,6 +143,11 @@ function PreviewRouteComponent() {
 							Print preview
 						</p>
 						<h1 className="text-2xl font-semibold text-slate-950">{builderState.label}</h1>
+						<p className="mt-1 text-sm text-slate-600">
+							{Object.values(budgetMetrics).filter((metric) => metric.status === 'over').length > 0
+								? 'Some sections exceed the current two-page template estimate.'
+								: 'All visible sections fit within the current template estimate.'}
+						</p>
 					</div>
 					<div className="flex flex-wrap gap-2">
 						<ActionLink href={buildResumeHref('/', activeSearch)} variant="secondary">
@@ -150,7 +157,13 @@ function PreviewRouteComponent() {
 					</div>
 				</div>
 			</div>
-			<ResumeDocument document={document} ui={builderState.ui} className="print:min-h-screen" />
+			<ResumeDocument
+				document={document}
+				ui={builderState.ui}
+				className="print:min-h-screen"
+				budgetMetrics={budgetMetrics}
+				showPageGuides
+			/>
 		</div>
 	);
 }

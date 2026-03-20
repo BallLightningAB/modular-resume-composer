@@ -1,0 +1,16 @@
+version: "1"
+items:
+  - id: ai-leadership
+    language: sv
+    title: AI-leveranstillägg
+    items:
+      - Ramar in AI-arbete utifrån värde, kapacitetsbegränsningar och operativ förändring snarare än funktionsnyhet.
+      - Hjälper team att bedöma automatiseringsmöjligheter, granskningspunkter för människor och utrullningsrisk innan skalning.
+      - Skapar struktur för experiment, styrning och tvärfunktionell införandeplanering.
+  - id: modern-platforms
+    language: sv
+    title: Tillägg för plattformsmodernisering
+    items:
+      - Kopplar moderniseringsinvesteringar till enklare leverans, högre tillförlitlighet och bättre teameffektivitet.
+      - Tydliggör migreringsfaser, tjänstegränser och ansvar under övergångstillstånd.
+      - Balanserar långsiktig arkitekturriktning med kortsiktiga releaseåtaganden.

@@ -5,6 +5,7 @@ import { ActionLink } from '@/components/resume/action-link';
 import { ResumeDocument } from '@/components/resume/resume-document';
 import { Button } from '@/components/ui/button';
 
+import { getBudgetMetrics } from '@/lib/resume/budget';
 import {
 	createLastUsedState,
 	createSavedPresetRecord,
@@ -168,6 +169,8 @@ function BuilderRouteComponent() {
 
 	const overlayOptions = runtimeData.modules.overlays?.items ?? [];
 	const swFallbackNotice = rawSearch.language !== runtimeData.language;
+	const swSelectedNotice = rawSearch.language === 'sv' && runtimeData.language === 'sv';
+	const budgetMetrics = useMemo(() => getBudgetMetrics(document), [document]);
 
 	function getCharacterHint(items: Array<string>): string {
 		const total = items.reduce((sum, item) => sum + item.length, 0);
@@ -238,8 +241,14 @@ function BuilderRouteComponent() {
 						</div>
 						{swFallbackNotice ? (
 							<div className="mt-4 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">
-								Swedish data is not available yet, so the app loaded the English dataset as a
-								fallback.
+								Swedish resume files were not fully available, so the app loaded the English resume
+								dataset as a fallback.
+							</div>
+						) : null}
+						{swSelectedNotice ? (
+							<div className="mt-4 rounded-2xl border border-sky-200 bg-sky-50 p-4 text-sm text-sky-900">
+								The resume has been switched to Swedish, including separate Swedish module files and
+								resume-facing labels.
 							</div>
 						) : null}
 					</div>
@@ -385,14 +394,22 @@ function BuilderRouteComponent() {
 							<div className="space-y-2">
 								{SECTION_KEYS.map((sectionKey) => {
 									const visible = builderState.ui.section_visibility[sectionKey] !== false;
+									const budget = budgetMetrics[sectionKey];
 									return (
 										<label
 											key={sectionKey}
 											className="flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-3 py-3 text-sm"
 										>
-											<span className="font-medium text-slate-900">
-												{SECTION_LABELS[sectionKey]}
-											</span>
+											<div>
+												<span className="font-medium text-slate-900">
+													{SECTION_LABELS[sectionKey]}
+												</span>
+												{budget ? (
+													<div className="text-xs tabular-nums text-slate-500">
+														{budget.used}/{budget.max}
+													</div>
+												) : null}
+											</div>
 											<input
 												type="checkbox"
 												checked={visible}
@@ -452,10 +469,22 @@ function BuilderRouteComponent() {
 							<div className="text-sm text-slate-600">
 								<div>Preset ID: {builderState.preset.id}</div>
 								<div>Language: {runtimeData.language.toUpperCase()}</div>
+								<div>
+									Template budget:{' '}
+									{Object.values(budgetMetrics).filter((metric) => metric.status === 'over')
+										.length > 0
+										? 'Over budget sections present'
+										: 'Within current template estimates'}
+								</div>
 							</div>
 						</div>
 					</div>
-					<ResumeDocument document={document} ui={builderState.ui} />
+					<ResumeDocument
+						document={document}
+						ui={builderState.ui}
+						budgetMetrics={budgetMetrics}
+						showPageGuides
+					/>
 				</section>
 			</div>
 		</div>

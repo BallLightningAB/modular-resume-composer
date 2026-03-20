@@ -1,0 +1,8 @@
+version: "1"
+items:
+  - id: references-core
+    language: sv
+    title: Referenser
+    items:
+      - Krishna Babu | Worldwide Inc. / VD | +123 456 7890 | krishna@worldwideinc.com
+      - Sharvin Verma | Worldwide Inc. / CTO | +123 456 7890 | sharvin@worldwideinc.com

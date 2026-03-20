@@ -1,5 +1,20 @@
 entries:
   - date: "2026-03-20"
+    version: "0.0.4"
+    issue: "https://github.com/BallLightningAB/modular-resume-composer/issues/3"
+    commit: TBD
+    status: completed
+    title: "feat(preview): add template budgets, page guides, and Swedish resume datasets"
+    details: |-
+      - Added a shared section-budget model with estimated character limits for the current two-page template
+      - Surfaced per-section `used/max` counters in the builder and resume preview to guide content fit
+      - Added visible page-boundary guides to the live preview and dedicated print preview so the page cutoff is easier to understand before printing
+      - Added complete Swedish example datasets for profile, modules, experience, overlays, references, and built-in presets
+      - Switched resume-facing labels to language-aware rendering while keeping the application UI in English
+      - Replaced the starter README with a brief project-specific guide for the modular resume composer
+
+      Refs: v0.0.4 #3 I3D4 #4 I4D1-I4D6 #6 I6D1-I6D6
+  - date: "2026-03-20"
     version: "0.0.3"
     issue: "https://github.com/BallLightningAB/modular-resume-composer/issues/3"
     commit: TBD
@@ -16,7 +31,7 @@ entries:
       Refs: v0.0.3 #3 I3D1-I3D3
   - date: "2026-03-20"
     version: "0.0.2"
-    issue: "https://github.com/BallLightningAB/modular-resume-composer/issues/4"
+    issue: "https://github.com/BallLightningAB/modular-resume-composer/issues/2"
     commit: TBD
     status: completed
     title: "feat(core): implement first working resume composer prototype"
@@ -31,7 +46,7 @@ entries:
       - Added public example dataset under data/examples for English demo usage
       - Added loader helpers, builder utilities, search parsing, and local storage helpers
 
-      Refs: v0.0.2 #4 I2D1-I2D7
+      Refs: v0.0.2 #2 I2D1-I2D7
   - date: "2026-03-19"
     version: "0.0.1"
     issue: "https://github.com/BallLightningAB/modular-resume-composer/issues/1"

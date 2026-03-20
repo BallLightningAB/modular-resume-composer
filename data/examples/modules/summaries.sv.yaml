@@ -1,0 +1,14 @@
+version: "1"
+items:
+  - id: summary-technical-delivery
+    language: sv
+    role_track: technical_delivery
+    text: Leveransledare som omvandlar otydliga plattforms-, produkt- och AI-initiativ till levererade resultat genom stark teknisk inramning, praktiska genomförandeplaner och trygg intressenthantering.
+  - id: summary-technical-project-management
+    language: sv
+    role_track: technical_project_management
+    text: Teknisk projektledare med fokus på att koppla ingenjörsarbete till affärsmål, minska leveransrisk och hålla tvärfunktionella program tydliga, mätbara och i rörelse.
+  - id: summary-integration
+    language: sv
+    role_track: integration
+    text: Integrationsspecialist som utformar tillförlitliga systemgränser, förenklar dataflöden och hjälper team att modernisera API:er och operativa överlämningar utan att tappa leveransfart.

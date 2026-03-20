@@ -8,6 +8,7 @@ summary:
   - Expanded YAML version parsing so numeric `version` fields are accepted and normalized to strings.
   - Hardened YAML loading so malformed private files fall back to examples instead of crashing route resolution.
   - Polished the first working PDF prototype with denser strengths layout, print keep-together rules, a references module, and strengths-overlay composition.
+  - Added template-aware preview budgets/page guides and Swedish resume-language dataset support while keeping the application UI in English.
 completed:
   - Added public example dataset under data/examples for English demo usage.
   - Added loader helpers, builder utilities, search parsing, and local storage helpers.
@@ -20,12 +21,19 @@ completed:
   - Merged selected overlay content into strengths with a cleaner print-focused layout.
   - Reordered presets so `stack` renders after `experience` and before `education`.
   - Added lightweight character-count hover hints to support modular layout budgeting.
-  - Opened follow-up GitHub issue #2 for in-app module editing and issue #5 for future modular editing UI patterns.
+  - Planned issue #6 for per-module budgets, hover highlighting, and visible page boundaries.
+  - Reframed issue #4 toward Swedish resume-language support instead of general in-app editing.
+  - Implemented shared section budget metrics with used/max counters in the builder and preview.
+  - Added visible page boundary guides to the live preview and dedicated print preview.
+  - Added Swedish example datasets and preset files so Swedish resume composition no longer falls back by default.
+  - Localized resume-facing labels in the renderer while keeping the app shell in English.
+  - Replaced the starter README with a brief project-relevant guide.
 remaining:
   - Browser print headers and footers still need to be disabled in the print dialog because they are not controlled by the app.
 notes:
   source_strategy: data/private overrides matching files from data/examples.
   saved_preset_model: wrapper around PresetFile with UI-only section visibility state.
+  language_strategy: keep the application UI in English while loading language-specific resume modules, presets, and resume-facing labels.
   route_strategy:
     - / handles the builder and live preview
     - /preview provides a cleaner print surface

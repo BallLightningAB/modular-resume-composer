@@ -1,5 +1,5 @@
 meta:
-  release: "0.0.3"
+  release: "0.0.4"
   repo: github.com/BallLightningAB/modular-resume-composer
   project:
   pdd_version:
@@ -25,27 +25,68 @@ roadmap:
         - "[completed] I3D1: Add references module and preset support"
         - "[completed] I3D2: Merge overlays into strengths and tighten strengths layout"
         - "[completed] I3D3: Improve print preview pagination and remove app-controlled print chrome"
-        - "[planned] I3D4: Enable in-app editing of resume modules and presets (moved to #2)"
+        - "[completed] I3D4: Add template-aware preview budgeting and page-boundary guidance (tracked in #6)"
       progress_log:
         - "Added references loading, schema support, preset wiring, and example reference content"
         - "Moved stack ahead of education in preset section ordering and merged overlay content into strengths"
         - "Improved print styling with keep-together behavior and hid the devtools badge from PDF output"
         - "Added lightweight character-count hover hints for overlay modules to support modular budgeting"
+        - "Planned a dedicated budgeting/page-boundary sub-issue and mapped Swedish resume-language support as a separate implementation stream"
+        - "Implemented per-section template budgets, used/max counters, and visible page boundary guides for the live and print previews"
+        - "Added Swedish example profile, module, and preset datasets plus Swedish resume-facing labels while keeping the app UI in English"
+        - "Updated the README and issue planning artifacts to reflect the new budgeting and Swedish resume-language model"
       est:
         dev_h: 4
         test_h: 1
       remaining_deliverables: []
       sub_issues:
+        - id: "preview-budgeting-and-page-boundaries"
+          issue: "https://github.com/BallLightningAB/modular-resume-composer/issues/6"
+          title: "Add per-module character budgets, hover highlighting, and visible page boundaries"
+          status: completed
+        - id: "swedish-resume-language-support"
+          issue: "https://github.com/BallLightningAB/modular-resume-composer/issues/4"
+          title: "Support Swedish resume modules and resume-facing labels"
+          status: completed
+          deliverables:
+            - "[completed] I4D1: Add Swedish dataset support for resume modules and presets"
+            - "[completed] I4D2: Translate resume-facing section headers and resume-only hardcoded labels"
+            - "[completed] I4D3: Keep the application UI in English while resume content and labels switch language"
+            - "[completed] I4D4: Show a clear Swedish-switch notification when Swedish module files are in use"
+            - "[completed] I4D5: Preserve English fallback behavior for missing Swedish content"
+            - "[completed] I4D6: Document the resume-language switching model"
+          progress_log:
+            - "Issue #4 repurposed from editing toward Swedish resume-template localization only"
+            - "Current app behavior falls back to English datasets when Swedish files are missing"
+            - "Resume-only labels are still hardcoded in English and need language-aware rendering"
+            - "Added complete Swedish example datasets for profile, modules, experience, overlays, references, and built-in presets"
+            - "Localized resume-facing section labels in the renderer while leaving the application UI in English"
+            - "Replaced the Swedish fallback notice with clearer English UI messaging for both fallback and successful Swedish module activation"
+          remaining_deliverables: []
         - id: "in-app-module-editing"
-          issue: "https://github.com/BallLightningAB/modular-resume-composer/issues/2"
-          title: "Enable in-app editing of resume modules and presets"
-          status: planned
+          issue: "https://github.com/BallLightningAB/modular-resume-composer/issues/5"
+          title: "In-app module editing and management"
+          status: pending
+          deliverables:
+            - "[pending] I5D1: Design and implement in-app module editor interface"
+            - "[pending] I5D2: Add module creation, editing, and deletion capabilities"
+            - "[pending] I5D3: Implement module validation and error handling"
+            - "[pending] I5D4: Add module import/export functionality"
+            - "[pending] I5D5: Add module preview and testing capabilities"
+          progress_log:
+            - "Issue reopened as the original in-app editing requirement"
+            - "This will allow users to edit resume modules directly in the application"
+          remaining_deliverables:
+            - "I5D1: Design and implement in-app module editor interface"
+            - "I5D2: Add module creation, editing, and deletion capabilities"
+            - "I5D3: Implement module validation and error handling"
+            - "I5D4: Add module import/export functionality"
+            - "I5D5: Add module preview and testing capabilities"
   recent_done:
     - id: "first-prototype"
-      issue: "https://github.com/BallLightningAB/modular-resume-composer/issues/4"
+      issue: "https://github.com/BallLightningAB/modular-resume-composer/issues/2"
       title: "First working resume composer prototype"
       status: completed
-      priority:
       labels:
         - type: feature
         - area: core

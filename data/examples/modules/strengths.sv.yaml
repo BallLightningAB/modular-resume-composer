@@ -1,0 +1,43 @@
+version: "1"
+items:
+  - id: strengths-technical-delivery
+    language: sv
+    role_track: technical_delivery
+    title: Kärnstyrkor
+    items:
+      - Teknisk projektleverans
+      - Systemintegration
+      - API-integration
+      - AI-arbetsflöden och agentbaserade leveranssätt
+      - Produktleverans och intressentförankring
+      - Kravhantering och tydlig scope
+      - Automatisering och operativ beredskap
+      - SaaS- och moderna webbplattformar
+      - Web3-nära system
+      - Tvärfunktionellt ledarskap
+  - id: strengths-technical-project-management
+    language: sv
+    role_track: technical_project_management
+    title: Kärnstyrkor
+    items:
+      - Programplanering och sekvensering
+      - Beroende- och riskhantering
+      - Lednings- och intressentrapportering
+      - Scope-styrning och prioritering
+      - Tvärfunktionell leveransrytm
+      - Eskalering och problemlösning
+      - Leveransmätetal och arbetssätt
+      - Koordinering av tekniska team
+  - id: strengths-integration
+    language: sv
+    role_track: integration
+    title: Kärnstyrkor
+    items:
+      - System- och tjänsteintegration
+      - API- och gränssnittskontrakt
+      - Migrerings- och cutoverplanering
+      - Leverantörs- och partneronboarding
+      - Interoperabilitet och plattformsinförande
+      - Supportöverlämning och dokumentation
+      - Utrullningssekvensering och beredskap
+      - Kartläggning av operativa beroenden

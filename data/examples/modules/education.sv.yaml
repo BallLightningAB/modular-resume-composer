@@ -1,0 +1,8 @@
+version: "1"
+items:
+  - id: education-core
+    language: sv
+    title: Utbildning
+    items:
+      - Civilingenjör i programvaruteknik, Lunds universitet
+      - Kandidat i informatik, Göteborgs universitet

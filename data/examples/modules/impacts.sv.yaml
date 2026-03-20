@@ -1,0 +1,26 @@
+version: "1"
+items:
+  - id: impacts-technical-delivery
+    language: sv
+    role_track: technical_delivery
+    title: Utvalda resultat
+    items:
+      - Ledde en omstart av en portfölj som minskade leveransosäkerhet, tydliggjorde ansvar och förbättrade release-förtroendet över flera team.
+      - Införde arbetssätt och leveransramar som kortade eskaleringscykler och gjorde statusrapportering mer beslutsrelevant.
+      - Hjälpte team att paketera plattforms- och AI-initiativ i tydligare milstolpar som ledningen kunde finansiera och följa upp.
+  - id: impacts-technical-project-management
+    language: sv
+    role_track: technical_project_management
+    title: Utvalda resultat
+    items:
+      - Omformade ett försenat program till fasade milstolpar med tydliga risker, beroenden och återhämtningsåtgärder.
+      - Förbättrade intressentinsynen genom skarpare planering, rapportering och ärendehantering.
+      - Ökade leveransförutsägbarheten genom att koppla roadmap-åtaganden till ingenjörskapacitet och sekvensering.
+  - id: impacts-integration
+    language: sv
+    role_track: integration
+    title: Utvalda resultat
+    items:
+      - Förenklade integrationsarkitektur och utrullningsplanering för initiativ med flera system och operativa beroenden.
+      - Minskade nedströmsfriktion genom att standardisera gränssnittsförväntningar, ansvar och supportvägar.
+      - Hjälpte team att gå från sköra punktlösningar till mer hållbara tjänste- och API-kontrakt.

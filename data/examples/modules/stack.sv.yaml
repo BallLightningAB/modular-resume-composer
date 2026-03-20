@@ -1,0 +1,11 @@
+version: "1"
+items:
+  - id: stack-core
+    language: sv
+    title: Verktyg och plattformar
+    items:
+      - Leveransledning, roadmap-planering, intressenthantering
+      - Plattformsmodernisering, integrationsarkitektur, API-strategi
+      - Agil leverans, riskhantering, beroendekartläggning
+      - AI-stödda arbetsflöden, experimentinramning, utrullningsstyrning
+      - Jira, Confluence, Miro, Notion, Figma, GitHub

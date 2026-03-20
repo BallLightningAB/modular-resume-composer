@@ -1,0 +1,117 @@
+version: "1"
+entries:
+  - id: northstar-platform
+    language: sv
+    company: Northstar Platform
+    role: Senior teknisk leveransledare
+    dates: 2022 - Nuvarande
+    location: Stockholm, Sverige
+    subtitle: Plattformsmodernisering och AI-stödd leverans
+    bullets:
+      - id: northstar-delivery-model
+        text: Byggde en leveransmodell för plattforms- och AI-initiativ som knöt ingenjörsexekvering till kvartalsvisa affärsmål.
+        tags:
+          - technical_delivery
+          - operating_model
+          - ai
+        priority: 95
+      - id: northstar-stakeholder-clarity
+        text: Införde beslutsorienterad rapportering och riskuppföljning som förbättrade tydligheten för produkt, teknik och ledning.
+        tags:
+          - technical_project_management
+          - stakeholder_management
+          - governance
+        priority: 84
+      - id: northstar-integration-roadmap
+        text: Sekvenserade integrationsberoenden mellan interna och externa system för att minska utrullningsfriktion och stärka release-beredskap.
+        tags:
+          - integration
+          - architecture
+          - planning
+        priority: 88
+      - id: northstar-value-framing
+        text: Hjälpte team att paketera tekniskt arbete som milstolpsbaserade narrativ som förbättrade prioritering och finansieringsdialoger.
+        tags:
+          - technical_delivery
+          - product
+          - communication
+        priority: 82
+      - id: northstar-release-coaching
+        text: Coachade team i lean release-planering, beroendehantering och eskaleringsvägar för synliga lanseringar.
+        tags:
+          - technical_project_management
+          - technical_delivery
+          - delivery
+        priority: 79
+  - id: orbit-commerce
+    language: sv
+    company: Orbit Commerce Group
+    role: Teknisk projektledare
+    dates: 2019 - 2022
+    location: Göteborg, Sverige
+    subtitle: Tvärfunktionella handels- och dataprogram
+    bullets:
+      - id: orbit-program-reset
+        text: Planerade om ett försenat handelsprogram till fasade leveranser med tydligt riskägarskap, beroendekartläggning och återhämtningspunkter.
+        tags:
+          - technical_project_management
+          - planning
+          - governance
+        priority: 93
+      - id: orbit-integration-governance
+        text: Koordinerade API-, data- och leverantörsberoenden över flera arbetsströmmar för att hålla lanseringar på spår.
+        tags:
+          - integration
+          - vendor_management
+          - technical_project_management
+        priority: 86
+      - id: orbit-roadmap-translation
+        text: Översatte roadmap-prioriteringar till ingenjörsredo milstolpar och tydligare leveranskommunikation för icke-tekniska intressenter.
+        tags:
+          - technical_delivery
+          - communication
+          - planning
+        priority: 78
+      - id: orbit-metrics-rhythm
+        text: Etablerade veckovisa programmätetal och ärendegranskningar som förbättrade synlighet och beslutstempo.
+        tags:
+          - technical_project_management
+          - metrics
+          - operating_model
+        priority: 80
+  - id: atlas-integrations
+    language: sv
+    company: Atlas Integrations
+    role: Integrationskonsult
+    dates: 2016 - 2019
+    location: Malmö, Sverige
+    subtitle: API-design, partneronboarding och tjänsteövergångar
+    bullets:
+      - id: atlas-api-contracts
+        text: Definierade tjänste- och API-kontrakt som minskade otydlighet vid partneronboarding och efterlanseringssupport.
+        tags:
+          - integration
+          - architecture
+          - api
+        priority: 92
+      - id: atlas-migration-plans
+        text: Planerade systemmigreringar med tydliga cutover-, rollback- och supportvägar för operativa team.
+        tags:
+          - integration
+          - migration
+          - delivery
+        priority: 87
+      - id: atlas-workshop-facilitation
+        text: Faciliterade tekniska workshops som hjälpte kundteam att enas om scope, gränssnittsägarskap och utrullningssekvensering.
+        tags:
+          - technical_delivery
+          - integration
+          - stakeholder_management
+        priority: 76
+      - id: atlas-documentation-upgrade
+        text: Standardiserade integrationsdokumentation och supportöverlämningar för att förbättra förvaltning efter go-live.
+        tags:
+          - integration
+          - operations
+          - documentation
+        priority: 74

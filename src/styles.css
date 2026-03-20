@@ -129,7 +129,49 @@
 	}
 }
 
+.resume-page-guide {
+	position: absolute;
+	left: 0;
+	right: 0;
+	z-index: 10;
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	color: oklch(0.556 0 0);
+	pointer-events: none;
+}
+
+.resume-page-guide::before,
+.resume-page-guide::after {
+	content: "";
+	flex: 1 1 0%;
+	height: 1px;
+	background: repeating-linear-gradient(
+		to right,
+		oklch(0.87 0.01 240) 0,
+		oklch(0.87 0.01 240) 8px,
+		transparent 8px,
+		transparent 14px
+	);
+}
+
+.resume-page-guide > span {
+	border-radius: 9999px;
+	border: 1px solid oklch(0.92 0 0);
+	background: oklch(1 0 0 / 0.92);
+	padding: 0.2rem 0.5rem;
+	font-size: 0.7rem;
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	box-shadow: 0 1px 2px rgb(15 23 42 / 0.06);
+}
+
 @media print {
+	.resume-page-guide {
+		display: none;
+	}
+
 	.resume-sheet {
 		break-inside: avoid;
 	}

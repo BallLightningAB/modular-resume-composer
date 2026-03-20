@@ -1,0 +1,51 @@
+id: technical-delivery-ai
+language: sv
+role_track: technical_delivery
+title_line: Teknisk leveransledare | AI-initiativ
+summary_id: summary-technical-delivery
+impacts_id: impacts-technical-delivery
+strengths_id: strengths-technical-delivery
+references_id: references-core
+education_id: education-core
+certifications_id: certifications-core
+stack_id: stack-core
+overlay_ids:
+  - ai-leadership
+  - modern-platforms
+section_order:
+  - summary
+  - selected_impact
+  - strengths
+  - experience
+  - stack
+  - education
+  - certifications
+  - references
+  - languages
+experience:
+  - entry_id: northstar-platform
+    max_bullets: 4
+    prefer_tags:
+      - technical_delivery
+      - ai
+      - operating_model
+    required_tags: []
+    exclude_tags: []
+    force_bullet_ids:
+      - northstar-delivery-model
+  - entry_id: orbit-commerce
+    max_bullets: 2
+    prefer_tags:
+      - technical_delivery
+      - planning
+    required_tags: []
+    exclude_tags: []
+    force_bullet_ids: []
+  - entry_id: atlas-integrations
+    max_bullets: 2
+    prefer_tags:
+      - integration
+      - technical_delivery
+    required_tags: []
+    exclude_tags: []
+    force_bullet_ids: []

@@ -1,0 +1,9 @@
+version: "1"
+items:
+  - id: certifications-core
+    language: sv
+    title: Certifieringar
+    items:
+      - Professional Scrum Master I
+      - AWS Certified Cloud Practitioner
+      - ITIL Foundation
