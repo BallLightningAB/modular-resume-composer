@@ -1,11 +1,10 @@
 meta:
-  release: "0.0.4"
+  release: "0.0.5"
   repo: github.com/BallLightningAB/modular-resume-composer
   project:
   pdd_version:
   current_changes: see specs/current-changes/
   future_changes: see specs/future-changes/
-  references:
     pdd:
     changelog: specs/CHANGELOG.yaml
   # Legend:
@@ -13,10 +12,35 @@ meta:
   # - I3Docs / I3UI / I3Fix / I3Test / I3Biome: tags for documentation, UI polish, minor fixes, tests and Biome/tooling work not tied to a single deliverable
 roadmap:
   current:
+  recent_done:
+    - id: "in-app-module-editing"
+      issue: "https://github.com/BallLightningAB/modular-resume-composer/issues/5"
+      title: "In-app module editing and management"
+      status: completed
+      labels:
+        - type: feature
+        - area: frontend
+      deliverables:
+        - "[completed] I5D1: Editor architecture and draft model"
+        - "[completed] I5D2: Structured editors for summary + block modules"
+        - "[completed] I5D3: Experience editor and preset rule controls"
+        - "[completed] I5D4: Editing-time fit and validation UX"
+        - "[completed] I5D5: Local persistence, migration, and reset flows"
+      progress_log:
+        - "Issue reopened as the original in-app editing requirement"
+        - "This will allow users to edit resume modules directly in the application"
+        - "Implemented a local-first draft model with editable module payloads stored in last-used state and saved variants"
+        - "Added structured in-app editors for summary, block modules, experience entries/bullets, and preset rule controls"
+        - "Added live validation messaging and preview section focus for editing feedback"
+        - "Verified the feature with targeted Biome checks and repo lint; repo typecheck passed after removing the unrelated sitemap script blocker"
+      est:
+        dev_h: 6
+        test_h: 2
+      remaining_deliverables: []
     - id: "prototype-polish"
       issue: "https://github.com/BallLightningAB/modular-resume-composer/issues/3"
       title: "First working prototype preview/layout polish"
-      status: in_progress
+      status: completed
       priority:
       labels:
         - type: feature
@@ -63,26 +87,6 @@ roadmap:
             - "Localized resume-facing section labels in the renderer while leaving the application UI in English"
             - "Replaced the Swedish fallback notice with clearer English UI messaging for both fallback and successful Swedish module activation"
           remaining_deliverables: []
-        - id: "in-app-module-editing"
-          issue: "https://github.com/BallLightningAB/modular-resume-composer/issues/5"
-          title: "In-app module editing and management"
-          status: pending
-          deliverables:
-            - "[pending] I5D1: Design and implement in-app module editor interface"
-            - "[pending] I5D2: Add module creation, editing, and deletion capabilities"
-            - "[pending] I5D3: Implement module validation and error handling"
-            - "[pending] I5D4: Add module import/export functionality"
-            - "[pending] I5D5: Add module preview and testing capabilities"
-          progress_log:
-            - "Issue reopened as the original in-app editing requirement"
-            - "This will allow users to edit resume modules directly in the application"
-          remaining_deliverables:
-            - "I5D1: Design and implement in-app module editor interface"
-            - "I5D2: Add module creation, editing, and deletion capabilities"
-            - "I5D3: Implement module validation and error handling"
-            - "I5D4: Add module import/export functionality"
-            - "I5D5: Add module preview and testing capabilities"
-  recent_done:
     - id: "first-prototype"
       issue: "https://github.com/BallLightningAB/modular-resume-composer/issues/2"
       title: "First working resume composer prototype"

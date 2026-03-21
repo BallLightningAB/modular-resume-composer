@@ -127,10 +127,10 @@ function PreviewRouteComponent() {
 	const document = useMemo(
 		() =>
 			composeResumeDocument({
-				modules: runtimeData.modules,
+				modules: builderState.modules ?? runtimeData.modules,
 				preset: builderState.preset,
 			}),
-		[builderState.preset, runtimeData.modules]
+		[builderState.modules, builderState.preset, runtimeData.modules]
 	);
 	const budgetMetrics = useMemo(() => getBudgetMetrics(document), [document]);
 

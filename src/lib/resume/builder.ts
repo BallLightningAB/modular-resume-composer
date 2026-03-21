@@ -1,5 +1,13 @@
 import type { BuilderSearch } from './search';
-import type { LastUsedResumeState, PresetFile, SavedPresetRecord, SavedPresetUi } from './types';
+import type {
+	BlockCollection,
+	LastUsedResumeState,
+	LoadedResumeModules,
+	PresetFile,
+	SavedPresetRecord,
+	SavedPresetUi,
+	SummariesFile,
+} from './types';
 
 export interface ResumeBuilderState {
 	source: 'builtin' | 'saved' | 'draft';
@@ -7,6 +15,7 @@ export interface ResumeBuilderState {
 	savedPresetId?: string;
 	label: string;
 	preset: PresetFile;
+	modules?: LoadedResumeModules;
 	ui: SavedPresetUi;
 }
 
@@ -17,6 +26,57 @@ function cloneExperienceRule(rule: PresetFile['experience'][number]) {
 		required_tags: [...rule.required_tags],
 		exclude_tags: [...rule.exclude_tags],
 		force_bullet_ids: [...rule.force_bullet_ids],
+	};
+}
+
+function cloneSummariesFile(summaries: SummariesFile): SummariesFile {
+	return {
+		...summaries,
+		items: summaries.items.map((item) => ({ ...item })),
+	};
+}
+
+function cloneBlockCollection(collection: BlockCollection): BlockCollection {
+	return {
+		...collection,
+		items: collection.items.map((item) => ({
+			...item,
+			items: [...item.items],
+		})),
+	};
+}
+
+export function cloneLoadedResumeModules(modules: LoadedResumeModules): LoadedResumeModules {
+	return {
+		profile: {
+			...modules.profile,
+			person: {
+				...modules.profile.person,
+				contact: { ...modules.profile.person.contact },
+			},
+			title_lines: { ...modules.profile.title_lines },
+			languages: modules.profile.languages.map((item) => ({ ...item })),
+		},
+		summaries: cloneSummariesFile(modules.summaries),
+		strengths: cloneBlockCollection(modules.strengths),
+		impacts: cloneBlockCollection(modules.impacts),
+		experience: {
+			...modules.experience,
+			entries: modules.experience.entries.map((entry) => ({
+				...entry,
+				bullets: entry.bullets.map((bullet) => ({
+					...bullet,
+					tags: [...bullet.tags],
+				})),
+			})),
+		},
+		overlays: modules.overlays ? cloneBlockCollection(modules.overlays) : undefined,
+		references: modules.references ? cloneBlockCollection(modules.references) : undefined,
+		education: modules.education ? cloneBlockCollection(modules.education) : undefined,
+		certifications: modules.certifications
+			? cloneBlockCollection(modules.certifications)
+			: undefined,
+		stack: modules.stack ? cloneBlockCollection(modules.stack) : undefined,
 	};
 }
 
@@ -76,6 +136,7 @@ export function deriveBuilderState(params: {
 				savedPresetId: savedPreset.id,
 				label: savedPreset.name,
 				preset: applySearchToPreset(savedPreset.preset, search),
+				modules: savedPreset.modules ? cloneLoadedResumeModules(savedPreset.modules) : undefined,
 				ui: cloneSavedPresetUi(savedPreset.ui),
 			};
 		}
@@ -88,6 +149,7 @@ export function deriveBuilderState(params: {
 		builtinPresetId: builtinPreset.id,
 		label: builtinPreset.id,
 		preset: applySearchToPreset(builtinPreset, search),
+		modules: undefined,
 		ui: cloneSavedPresetUi(),
 	};
 }
@@ -111,6 +173,7 @@ export function deriveBuilderStateFromLastUsed(
 		savedPresetId: lastUsed.saved_preset_id,
 		label: lastUsed.saved_preset_id ?? lastUsed.preset.id,
 		preset: applySearchToPreset(lastUsed.preset, effectiveSearch),
+		modules: lastUsed.modules ? cloneLoadedResumeModules(lastUsed.modules) : undefined,
 		ui: cloneSavedPresetUi(lastUsed.ui),
 	};
 }
@@ -120,6 +183,7 @@ export function createLastUsedState(state: ResumeBuilderState): LastUsedResumeSt
 		source: state.source,
 		saved_preset_id: state.savedPresetId,
 		preset: clonePreset(state.preset),
+		modules: state.modules ? cloneLoadedResumeModules(state.modules) : undefined,
 		ui: cloneSavedPresetUi(state.ui),
 		updated_at: new Date().toISOString(),
 	};
@@ -153,6 +217,7 @@ export function createSavedPresetRecord(params: {
 		name: params.name.trim(),
 		source_preset_id: params.state.builtinPresetId,
 		preset: clonePreset(params.state.preset),
+		modules: params.state.modules ? cloneLoadedResumeModules(params.state.modules) : undefined,
 		ui: cloneSavedPresetUi(params.state.ui),
 		created_at: timestamp,
 		updated_at: timestamp,

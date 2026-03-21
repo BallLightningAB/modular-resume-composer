@@ -170,6 +170,7 @@ export const SavedPresetRecordSchema = z.object({
 	name: z.string().min(1),
 	source_preset_id: z.string().optional(),
 	preset: PresetFileSchema,
+	modules: z.lazy(() => LoadedResumeModulesSchema).optional(),
 	ui: SavedPresetUiSchema.default({ section_visibility: {} }),
 	created_at: z.string().min(1),
 	updated_at: z.string().min(1),
@@ -181,6 +182,7 @@ export const LastUsedResumeStateSchema = z.object({
 	source: z.enum(['builtin', 'saved', 'draft']),
 	saved_preset_id: z.string().optional(),
 	preset: PresetFileSchema,
+	modules: z.lazy(() => LoadedResumeModulesSchema).optional(),
 	ui: SavedPresetUiSchema.default({ section_visibility: {} }),
 	updated_at: z.string().min(1),
 });

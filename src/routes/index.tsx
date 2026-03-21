@@ -3,10 +3,13 @@ import { useEffect, useMemo, useState } from 'react';
 
 import { ActionLink } from '@/components/resume/action-link';
 import { ResumeDocument } from '@/components/resume/resume-document';
+import { ResumeEditorPanel } from '@/components/resume/resume-editor-panel';
 import { Button } from '@/components/ui/button';
 
 import { getBudgetMetrics } from '@/lib/resume/budget';
 import {
+	cloneLoadedResumeModules,
+	clonePreset,
 	createLastUsedState,
 	createSavedPresetRecord,
 	deriveBuilderState,
@@ -31,7 +34,15 @@ import {
 	upsertSavedPreset,
 	writeLastUsedResumeState,
 } from '@/lib/resume/storage';
-import type { RoleTrack, SavedPresetRecord, SavedPresetUi, SectionKey } from '@/lib/resume/types';
+import type {
+	BlockCollection,
+	LoadedResumeModules,
+	PresetFile,
+	RoleTrack,
+	SavedPresetRecord,
+	SavedPresetUi,
+	SectionKey,
+} from '@/lib/resume/types';
 
 const SECTION_LABELS: Record<SectionKey, string> = {
 	summary: 'Summary',
@@ -51,6 +62,137 @@ const ROLE_TRACK_LABELS: Record<RoleTrack, string> = {
 	technical_project_management: 'Technical project management',
 	integration: 'Integration',
 };
+
+const PRESET_BLOCK_REFERENCES: Array<{
+	collection: keyof Pick<
+		LoadedResumeModules,
+		'strengths' | 'impacts' | 'stack' | 'education' | 'certifications' | 'references'
+	>;
+	field:
+		| 'strengths_id'
+		| 'impacts_id'
+		| 'stack_id'
+		| 'education_id'
+		| 'certifications_id'
+		| 'references_id';
+	label: string;
+}> = [
+	{ collection: 'strengths', field: 'strengths_id', label: 'strengths' },
+	{ collection: 'impacts', field: 'impacts_id', label: 'selected impact' },
+	{ collection: 'stack', field: 'stack_id', label: 'stack' },
+	{ collection: 'education', field: 'education_id', label: 'education' },
+	{ collection: 'certifications', field: 'certifications_id', label: 'certifications' },
+	{ collection: 'references', field: 'references_id', label: 'references' },
+];
+
+function findDuplicateIds(ids: Array<string>): Array<string> {
+	const counts = new Map<string, number>();
+	for (const id of ids) {
+		counts.set(id, (counts.get(id) ?? 0) + 1);
+	}
+	return Array.from(counts.entries())
+		.filter(([, count]) => count > 1)
+		.map(([id]) => id);
+}
+
+function getCollectionHasItem(
+	collection: BlockCollection | undefined,
+	itemId: string | undefined,
+	language: PresetFile['language']
+): boolean {
+	if (!collection || !itemId) {
+		return true;
+	}
+	return collection.items.some((item) => item.id === itemId && item.language === language);
+}
+
+function getDraftValidationMessages(params: {
+	modules: LoadedResumeModules;
+	preset: PresetFile;
+}): Array<string> {
+	const { modules, preset } = params;
+	const messages: Array<string> = [];
+
+	for (const id of findDuplicateIds(modules.summaries.items.map((item) => item.id))) {
+		messages.push(`Duplicate summary id: ${id}`);
+	}
+
+	for (const config of PRESET_BLOCK_REFERENCES) {
+		const collection = modules[config.collection] as BlockCollection | undefined;
+		for (const id of findDuplicateIds(collection?.items.map((item) => item.id) ?? [])) {
+			messages.push(`Duplicate ${config.label} block id: ${id}`);
+		}
+	}
+
+	for (const id of findDuplicateIds(modules.experience.entries.map((entry) => entry.id))) {
+		messages.push(`Duplicate experience entry id: ${id}`);
+	}
+
+	for (const entry of modules.experience.entries) {
+		for (const id of findDuplicateIds(entry.bullets.map((bullet) => bullet.id))) {
+			messages.push(`Duplicate bullet id in ${entry.id}: ${id}`);
+		}
+	}
+
+	if (
+		preset.summary_id &&
+		!modules.summaries.items.some(
+			(item) => item.id === preset.summary_id && item.language === preset.language
+		)
+	) {
+		messages.push(`Selected summary \`${preset.summary_id}\` is missing for ${preset.language}.`);
+	}
+
+	for (const config of PRESET_BLOCK_REFERENCES) {
+		if (
+			!getCollectionHasItem(
+				modules[config.collection] as BlockCollection | undefined,
+				preset[config.field],
+				preset.language
+			)
+		) {
+			messages.push(
+				`Selected ${config.label} block \`${preset[config.field]}\` is missing for ${preset.language}.`
+			);
+		}
+	}
+
+	if (
+		modules.overlays &&
+		preset.overlay_ids.some(
+			(id) =>
+				!modules.overlays?.items.some((item) => item.id === id && item.language === preset.language)
+		)
+	) {
+		messages.push('One or more selected overlays are missing for the current language.');
+	}
+
+	for (const entryId of findDuplicateIds(preset.section_order)) {
+		messages.push(`Section order contains a duplicate entry: ${entryId}`);
+	}
+
+	for (const rule of preset.experience) {
+		const entry = modules.experience.entries.find(
+			(item) => item.id === rule.entry_id && item.language === preset.language
+		);
+		if (!entry) {
+			messages.push(
+				`Preset experience entry \`${rule.entry_id}\` is missing for ${preset.language}.`
+			);
+			continue;
+		}
+
+		for (const bulletId of rule.force_bullet_ids) {
+			if (!entry.bullets.some((bullet) => bullet.id === bulletId)) {
+				messages.push(
+					`Forced bullet \`${bulletId}\` is missing in experience entry \`${entry.id}\`.`
+				);
+			}
+		}
+	}
+
+	return messages;
+}
 
 export const Route = createFileRoute('/')({
 	validateSearch: (search) => validateBuilderSearch(search),
@@ -124,14 +266,35 @@ function BuilderRouteComponent() {
 	]);
 
 	const [uiState, setUiState] = useState<SavedPresetUi>(baseBuilderState.ui);
+	const [draftPreset, setDraftPreset] = useState<PresetFile>(() =>
+		clonePreset(baseBuilderState.preset)
+	);
+	const [draftModules, setDraftModules] = useState<LoadedResumeModules>(() =>
+		baseBuilderState.modules
+			? cloneLoadedResumeModules(baseBuilderState.modules)
+			: cloneLoadedResumeModules(runtimeData.modules)
+	);
+	const [activeEditorSection, setActiveEditorSection] = useState<SectionKey | null>(null);
 
 	useEffect(() => {
 		setUiState(baseBuilderState.ui);
 	}, [baseBuilderState.ui]);
 
+	useEffect(() => {
+		setDraftPreset(clonePreset(baseBuilderState.preset));
+	}, [baseBuilderState.preset]);
+
+	useEffect(() => {
+		setDraftModules(
+			baseBuilderState.modules
+				? cloneLoadedResumeModules(baseBuilderState.modules)
+				: cloneLoadedResumeModules(runtimeData.modules)
+		);
+	}, [baseBuilderState.modules, runtimeData.modules]);
+
 	const builderState = useMemo(
-		() => ({ ...baseBuilderState, ui: uiState }),
-		[baseBuilderState, uiState]
+		() => ({ ...baseBuilderState, preset: draftPreset, modules: draftModules, ui: uiState }),
+		[baseBuilderState, draftModules, draftPreset, uiState]
 	);
 
 	useEffect(() => {
@@ -161,16 +324,27 @@ function BuilderRouteComponent() {
 	const document = useMemo(
 		() =>
 			composeResumeDocument({
-				modules: runtimeData.modules,
+				modules: builderState.modules ?? runtimeData.modules,
 				preset: builderState.preset,
 			}),
-		[builderState.preset, runtimeData.modules]
+		[builderState.modules, builderState.preset, runtimeData.modules]
 	);
 
-	const overlayOptions = runtimeData.modules.overlays?.items ?? [];
+	const overlayOptions = (builderState.modules ?? runtimeData.modules).overlays?.items ?? [];
 	const swFallbackNotice = rawSearch.language !== runtimeData.language;
 	const swSelectedNotice = rawSearch.language === 'sv' && runtimeData.language === 'sv';
 	const budgetMetrics = useMemo(() => getBudgetMetrics(document), [document]);
+	const overBudgetSectionCount = SECTION_KEYS.filter(
+		(sectionKey) => budgetMetrics[sectionKey]?.status === 'over'
+	).length;
+	const validationMessages = useMemo(
+		() =>
+			getDraftValidationMessages({
+				modules: builderState.modules ?? runtimeData.modules,
+				preset: builderState.preset,
+			}),
+		[builderState.modules, builderState.preset, runtimeData.modules]
+	);
 
 	function getCharacterHint(items: Array<string>): string {
 		const total = items.reduce((sum, item) => sum + item.length, 0);
@@ -454,6 +628,16 @@ function BuilderRouteComponent() {
 				</aside>
 
 				<section className="space-y-4">
+					<ResumeEditorPanel
+						activeSection={activeEditorSection}
+						budgetMetrics={budgetMetrics}
+						draftModules={builderState.modules ?? runtimeData.modules}
+						draftPreset={builderState.preset}
+						onActiveSectionChange={setActiveEditorSection}
+						onModulesChange={setDraftModules}
+						onPresetChange={setDraftPreset}
+						validationMessages={validationMessages}
+					/>
 					<div className="rounded-3xl border border-slate-200 bg-white p-4 shadow-sm shadow-slate-200/60 sm:p-6">
 						<div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
 							<div>
@@ -471,8 +655,7 @@ function BuilderRouteComponent() {
 								<div>Language: {runtimeData.language.toUpperCase()}</div>
 								<div>
 									Template budget:{' '}
-									{Object.values(budgetMetrics).filter((metric) => metric.status === 'over')
-										.length > 0
+									{overBudgetSectionCount > 0
 										? 'Over budget sections present'
 										: 'Within current template estimates'}
 								</div>
@@ -483,6 +666,7 @@ function BuilderRouteComponent() {
 						document={document}
 						ui={builderState.ui}
 						budgetMetrics={budgetMetrics}
+						activeSection={activeEditorSection}
 						showPageGuides
 					/>
 				</section>
