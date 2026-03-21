@@ -1,6 +1,16 @@
 entries:
 
   - date: "2026-03-21"
+    version: "0.0.5.3"
+    issue: ""
+    commit: TBD
+    status: completed
+    title: "chore: remove paraglide generation from CI"
+    details: |-
+      - chore(ci): removed paraglide generation from CI
+  - date: "2026-03-21"
+
+  - date: "2026-03-21"
     version: "0.0.5.2"
     issue: ""
     commit: TBD
