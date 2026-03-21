@@ -1,4 +1,13 @@
 entries:
+
+  - date: "2026-03-21"
+    version: "0.0.5.1"
+    issue: ""
+    commit: TBD
+    status: completed
+    title: "chore: exclude routeTree.gen.ts from linting"
+    details: |-
+      - chore(lint): src/routeTree.gen.ts is now excluded in biome.json
   - date: "2026-03-21"
     version: "0.0.5"
     issue: "https://github.com/BallLightningAB/modular-resume-composer/issues/5"

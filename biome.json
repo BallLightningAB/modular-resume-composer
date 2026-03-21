@@ -18,7 +18,8 @@
 			"!**/.wrangler",
 			"!**/.output",
 			"!**/.vinxi",
-			"!**/__unconfig*"
+			"!**/__unconfig*",
+			"!src/routeTree.gen.ts"
 		]
 	},
 	"formatter": {
